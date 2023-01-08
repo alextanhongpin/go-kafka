@@ -37,6 +37,14 @@ func main() {
 			Key:   []byte("c"),
 			Value: []byte("c is for cat"),
 		},
+		kafka.Message{
+			Key:   []byte("d"),
+			Value: []byte("d is for damian"),
+		},
+		kafka.Message{
+			Key:   []byte("e"),
+			Value: []byte("e is for elise"),
+		},
 	); err != nil {
 		log.Fatal("failed to write messages:", err)
 	}

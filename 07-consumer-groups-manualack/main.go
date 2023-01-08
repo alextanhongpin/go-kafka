@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 
@@ -9,10 +10,14 @@ import (
 )
 
 func main() {
+	var topic string
+	flag.StringVar(&topic, "topic", "topic", "set the kafka topic")
+	flag.Parse()
+
 	r := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:  []string{"localhost:9093"},
 		GroupID:  "consumer-group-id",
-		Topic:    "my-topic",
+		Topic:    topic,
 		MinBytes: 10e3, //10KB
 		MaxBytes: 10e4, // 10MB
 	})
