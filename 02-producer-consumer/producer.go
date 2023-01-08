@@ -22,6 +22,7 @@ func main() {
 		log.Fatalf("failed to dial leader: %v", err)
 	}
 
+	// NOTE: This only writes to one partition.
 	conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
 	_, err = conn.WriteMessages(
 		kafka.Message{Value: []byte("one")},

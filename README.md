@@ -43,3 +43,14 @@ $ bin/kafka-topics.sh --bootstrap-server=localhost:9092 --alter --topic my-topic
 # Check distribution across all partitions.
 $ bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic my-topic --time -1
 ```
+
+## Questions
+- how to add partitions to existing topic?
+
+```bash
+# Alter partition
+$ bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic topic --partitions 40
+
+# Verify
+$ bin/kafka-topics.sh --bootstrap-server=localhost:9092 --describe --topic topic
+```
