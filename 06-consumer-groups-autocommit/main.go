@@ -15,11 +15,12 @@ func main() {
 	flag.Parse()
 
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:  []string{"localhost:9093"},
-		GroupID:  "consumer-group-id",
-		Topic:    topic,
-		MinBytes: 10e3, //10KB
-		MaxBytes: 10e4, // 10MB
+		Brokers:     []string{"localhost:9093"},
+		GroupID:     "consumer-group-id",
+		Topic:       topic,
+		MinBytes:    10e3, //10KB
+		MaxBytes:    10e6, // 10MB
+		StartOffset: kafka.LastOffset,
 	})
 
 	for {
