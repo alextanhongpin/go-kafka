@@ -37,11 +37,18 @@ $ bin/kafka-console-consumer.sh --topic my-topic --from-beginning --bootstrap-se
 # View events from specific partition.
 $ bin/kafka-console-consumer.sh --topic my-topic --from-beginning --bootstrap-server localhost:9092 --partition 0
 
+
+# View events from a given offset
+$ bin/kafka-console-consumer.sh --topic topic -bootstrap-server localhost:9092 --offset 12 --partition 0
+
 # Add partitions to topics.
 $ bin/kafka-topics.sh --bootstrap-server=localhost:9092 --alter --topic my-topic --partitions 10
 
 # Check distribution across all partitions.
 $ bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic my-topic --time -1
+
+# View consumer group offset
+$ bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group consumer-group-id --describe
 ```
 
 ## Questions
@@ -50,7 +57,18 @@ $ bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092
 ```bash
 # Alter partition
 $ bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic topic --partitions 40
+```
 
-# Verify
+```
+# Verify (view partitions)
+```
+
+Output:
+
+```bash
 $ bin/kafka-topics.sh --bootstrap-server=localhost:9092 --describe --topic topic
+Topic: topic    TopicId: ya8FFGKWR5-h8P0jWn5tGw PartitionCount: 3       ReplicationFactor: 1    Configs:
+        Topic: topic    Partition: 0    Leader: 1001    Replicas: 1001  Isr: 1001
+        Topic: topic    Partition: 1    Leader: 1001    Replicas: 1001  Isr: 1001
+        Topic: topic    Partition: 2    Leader: 1001    Replicas: 1001  Isr: 1001
 ```
